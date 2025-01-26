@@ -1,0 +1,19 @@
+version : '3'
+services:
+  web:
+    ports:
+      - "3000:3000"
+    volumes:
+      - /app/node_modulus # Creating reference/bookmark at node modules folder inside the running container
+      - .:/app  # the '.' is this cmd represents the current working directory under which all our files are present
+    build:
+      context: . # '.' represents build the entire thing from parent directory
+      dockerfile: Dockerfile.dev # use this file to build the image
+  tests:
+    volumes:
+      - /app/node_modulus
+      - .:/app
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    command: ["npm","run","test"] # override starting cmd for this service 
