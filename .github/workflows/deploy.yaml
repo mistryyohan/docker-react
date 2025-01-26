@@ -23,7 +23,7 @@ jobs:
 
       - name: Build Docker image
         run: |
-          docker build -t myfrontendbuild -f Dockerfile.dev
+          docker build -t myfrontendbuild -f Dockerfile.dev .
 
       - name: Run test after code merge
         run: |
